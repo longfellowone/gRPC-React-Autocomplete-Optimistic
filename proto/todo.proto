@@ -6,6 +6,7 @@ service Todo {
   rpc ListTasks (Empty) returns (TaskResponse) {}
   rpc NewTask (Task) returns (Empty) {}
   rpc RemoveTask (RemoveTaskRequest) returns (Empty) {}
+  rpc FindProduct (FindProductRequest) returns (FindProductResponse) {}
 }
 
 message Empty {}
@@ -21,6 +22,19 @@ message TaskResponse {
 
 message RemoveTaskRequest {
   string uuid = 1;
+}
+
+message Product {
+  string uuid = 1;
+  string name = 2;
+}
+
+message FindProductRequest {
+  string name = 1;
+}
+
+message FindProductResponse {
+  repeated Product products = 1;
 }
 
 /* eslint-disable */

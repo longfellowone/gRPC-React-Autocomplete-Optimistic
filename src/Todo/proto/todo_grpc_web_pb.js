@@ -240,5 +240,61 @@ proto.Todo.TodoPromiseClient.prototype.removeTask =
 };
 
 
+/**
+ * @const
+ * @type {!grpc.web.AbstractClientBase.MethodInfo<
+ *   !proto.Todo.FindProductRequest,
+ *   !proto.Todo.FindProductResponse>}
+ */
+const methodInfo_Todo_FindProduct = new grpc.web.AbstractClientBase.MethodInfo(
+  proto.Todo.FindProductResponse,
+  /** @param {!proto.Todo.FindProductRequest} request */
+  function(request) {
+    return request.serializeBinary();
+  },
+  proto.Todo.FindProductResponse.deserializeBinary
+);
+
+
+/**
+ * @param {!proto.Todo.FindProductRequest} request The
+ *     request proto
+ * @param {!Object<string, string>} metadata User defined
+ *     call metadata
+ * @param {function(?grpc.web.Error, ?proto.Todo.FindProductResponse)}
+ *     callback The callback function(error, response)
+ * @return {!grpc.web.ClientReadableStream<!proto.Todo.FindProductResponse>|undefined}
+ *     The XHR Node Readable Stream
+ */
+proto.Todo.TodoClient.prototype.findProduct =
+    function(request, metadata, callback) {
+  return this.client_.rpcCall(this.hostname_ +
+      '/Todo.Todo/FindProduct',
+      request,
+      metadata,
+      methodInfo_Todo_FindProduct,
+      callback);
+};
+
+
+/**
+ * @param {!proto.Todo.FindProductRequest} request The
+ *     request proto
+ * @param {!Object<string, string>} metadata User defined
+ *     call metadata
+ * @return {!Promise<!proto.Todo.FindProductResponse>}
+ *     The XHR Node Readable Stream
+ */
+proto.Todo.TodoPromiseClient.prototype.findProduct =
+    function(request, metadata) {
+  return new Promise((resolve, reject) => {
+    this.delegateClient_.findProduct(
+      request, metadata, (error, response) => {
+        error ? reject(error) : resolve(response);
+      });
+  });
+};
+
+
 module.exports = proto.Todo;
 

@@ -139,45 +139,6 @@ func (m *TaskResponse) GetTasks() []*Task {
 	return nil
 }
 
-type NewTaskResponse struct {
-	Success              bool     `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *NewTaskResponse) Reset()         { *m = NewTaskResponse{} }
-func (m *NewTaskResponse) String() string { return proto.CompactTextString(m) }
-func (*NewTaskResponse) ProtoMessage()    {}
-func (*NewTaskResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0e4b95d0c4e09639, []int{3}
-}
-
-func (m *NewTaskResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_NewTaskResponse.Unmarshal(m, b)
-}
-func (m *NewTaskResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_NewTaskResponse.Marshal(b, m, deterministic)
-}
-func (m *NewTaskResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_NewTaskResponse.Merge(m, src)
-}
-func (m *NewTaskResponse) XXX_Size() int {
-	return xxx_messageInfo_NewTaskResponse.Size(m)
-}
-func (m *NewTaskResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_NewTaskResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_NewTaskResponse proto.InternalMessageInfo
-
-func (m *NewTaskResponse) GetSuccess() bool {
-	if m != nil {
-		return m.Success
-	}
-	return false
-}
-
 type RemoveTaskRequest struct {
 	Uuid                 string   `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -189,7 +150,7 @@ func (m *RemoveTaskRequest) Reset()         { *m = RemoveTaskRequest{} }
 func (m *RemoveTaskRequest) String() string { return proto.CompactTextString(m) }
 func (*RemoveTaskRequest) ProtoMessage()    {}
 func (*RemoveTaskRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_0e4b95d0c4e09639, []int{4}
+	return fileDescriptor_0e4b95d0c4e09639, []int{3}
 }
 
 func (m *RemoveTaskRequest) XXX_Unmarshal(b []byte) error {
@@ -217,33 +178,163 @@ func (m *RemoveTaskRequest) GetUuid() string {
 	return ""
 }
 
+type Product struct {
+	Uuid                 string   `protobuf:"bytes,1,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Name                 string   `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Product) Reset()         { *m = Product{} }
+func (m *Product) String() string { return proto.CompactTextString(m) }
+func (*Product) ProtoMessage()    {}
+func (*Product) Descriptor() ([]byte, []int) {
+	return fileDescriptor_0e4b95d0c4e09639, []int{4}
+}
+
+func (m *Product) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Product.Unmarshal(m, b)
+}
+func (m *Product) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Product.Marshal(b, m, deterministic)
+}
+func (m *Product) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Product.Merge(m, src)
+}
+func (m *Product) XXX_Size() int {
+	return xxx_messageInfo_Product.Size(m)
+}
+func (m *Product) XXX_DiscardUnknown() {
+	xxx_messageInfo_Product.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Product proto.InternalMessageInfo
+
+func (m *Product) GetUuid() string {
+	if m != nil {
+		return m.Uuid
+	}
+	return ""
+}
+
+func (m *Product) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type FindProductRequest struct {
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FindProductRequest) Reset()         { *m = FindProductRequest{} }
+func (m *FindProductRequest) String() string { return proto.CompactTextString(m) }
+func (*FindProductRequest) ProtoMessage()    {}
+func (*FindProductRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_0e4b95d0c4e09639, []int{5}
+}
+
+func (m *FindProductRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FindProductRequest.Unmarshal(m, b)
+}
+func (m *FindProductRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FindProductRequest.Marshal(b, m, deterministic)
+}
+func (m *FindProductRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FindProductRequest.Merge(m, src)
+}
+func (m *FindProductRequest) XXX_Size() int {
+	return xxx_messageInfo_FindProductRequest.Size(m)
+}
+func (m *FindProductRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_FindProductRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FindProductRequest proto.InternalMessageInfo
+
+func (m *FindProductRequest) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+type FindProductResponse struct {
+	Products             []*Product `protobuf:"bytes,1,rep,name=products,proto3" json:"products,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
+}
+
+func (m *FindProductResponse) Reset()         { *m = FindProductResponse{} }
+func (m *FindProductResponse) String() string { return proto.CompactTextString(m) }
+func (*FindProductResponse) ProtoMessage()    {}
+func (*FindProductResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_0e4b95d0c4e09639, []int{6}
+}
+
+func (m *FindProductResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FindProductResponse.Unmarshal(m, b)
+}
+func (m *FindProductResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FindProductResponse.Marshal(b, m, deterministic)
+}
+func (m *FindProductResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FindProductResponse.Merge(m, src)
+}
+func (m *FindProductResponse) XXX_Size() int {
+	return xxx_messageInfo_FindProductResponse.Size(m)
+}
+func (m *FindProductResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_FindProductResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FindProductResponse proto.InternalMessageInfo
+
+func (m *FindProductResponse) GetProducts() []*Product {
+	if m != nil {
+		return m.Products
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*Empty)(nil), "Todo.Empty")
 	proto.RegisterType((*Task)(nil), "Todo.Task")
 	proto.RegisterType((*TaskResponse)(nil), "Todo.TaskResponse")
-	proto.RegisterType((*NewTaskResponse)(nil), "Todo.NewTaskResponse")
 	proto.RegisterType((*RemoveTaskRequest)(nil), "Todo.RemoveTaskRequest")
+	proto.RegisterType((*Product)(nil), "Todo.Product")
+	proto.RegisterType((*FindProductRequest)(nil), "Todo.FindProductRequest")
+	proto.RegisterType((*FindProductResponse)(nil), "Todo.FindProductResponse")
 }
 
 func init() { proto.RegisterFile("todo.proto", fileDescriptor_0e4b95d0c4e09639) }
 
 var fileDescriptor_0e4b95d0c4e09639 = []byte{
-	// 236 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x90, 0x41, 0x4b, 0xc3, 0x40,
-	0x10, 0x85, 0x1b, 0x4d, 0x8d, 0x7d, 0x15, 0xc4, 0xb9, 0xb8, 0xf4, 0x14, 0x16, 0xc1, 0x82, 0x10,
-	0xa4, 0xf6, 0x2f, 0x78, 0x13, 0x0f, 0x4b, 0xff, 0x40, 0x6c, 0x06, 0x29, 0x25, 0x4e, 0x74, 0x76,
-	0x15, 0xff, 0x86, 0xbf, 0x58, 0xb2, 0xdb, 0x62, 0xd4, 0xde, 0x76, 0x76, 0xde, 0xe3, 0x7d, 0x6f,
-	0x00, 0x2f, 0x8d, 0x54, 0xdd, 0x9b, 0x78, 0xa1, 0x7c, 0x25, 0x8d, 0xd8, 0x02, 0xe3, 0xfb, 0xb6,
-	0xf3, 0x9f, 0x76, 0x89, 0x7c, 0x55, 0xeb, 0x96, 0x08, 0x79, 0x08, 0x9b, 0xc6, 0x64, 0x65, 0x36,
-	0x9f, 0xb8, 0xf8, 0x26, 0x83, 0xa2, 0x65, 0xd5, 0xfa, 0x99, 0xcd, 0x51, 0xfc, 0xde, 0x8f, 0xf6,
-	0x16, 0x67, 0xbd, 0xcb, 0xb1, 0x76, 0xf2, 0xa2, 0x4c, 0x25, 0xc6, 0xbe, 0xd6, 0xad, 0x9a, 0xac,
-	0x3c, 0x9e, 0x4f, 0x17, 0xa8, 0xfa, 0x90, 0x2a, 0x4a, 0xd2, 0xc2, 0xde, 0xe0, 0xfc, 0x91, 0x3f,
-	0x7e, 0x99, 0x0c, 0x0a, 0x0d, 0xeb, 0x35, 0xab, 0xc6, 0xd4, 0x53, 0xb7, 0x1f, 0xed, 0x35, 0x2e,
-	0x1c, 0xb7, 0xf2, 0xce, 0x49, 0xff, 0x1a, 0x58, 0xfd, 0x21, 0xc2, 0xc5, 0x57, 0x86, 0xd8, 0x87,
-	0x2a, 0x4c, 0x1e, 0x36, 0xea, 0x7b, 0xbd, 0xd2, 0x34, 0xc5, 0xc7, 0x82, 0x33, 0x1a, 0xb0, 0xec,
-	0x92, 0xed, 0x88, 0xae, 0x50, 0xec, 0x70, 0x68, 0x00, 0x3b, 0x1b, 0x3a, 0xed, 0x88, 0x96, 0xc0,
-	0x0f, 0x07, 0x5d, 0xa6, 0xe5, 0x3f, 0xb2, 0x3f, 0xae, 0xa7, 0x93, 0x78, 0xe8, 0xbb, 0xef, 0x00,
-	0x00, 0x00, 0xff, 0xff, 0xb3, 0x66, 0x78, 0x49, 0x76, 0x01, 0x00, 0x00,
+	// 285 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x6c, 0x52, 0xc1, 0x4e, 0x83, 0x40,
+	0x14, 0x2c, 0xda, 0x8a, 0x1d, 0xf4, 0xe0, 0xf3, 0x20, 0x72, 0x22, 0x1b, 0x13, 0xf1, 0x42, 0xb4,
+	0xf6, 0x03, 0x3c, 0xa8, 0x27, 0x63, 0x0c, 0xe9, 0x0f, 0xa0, 0x6c, 0x0c, 0x69, 0x60, 0xb1, 0x6f,
+	0xd1, 0xf8, 0xa7, 0x7e, 0x8e, 0x61, 0x17, 0x74, 0xb5, 0xdc, 0x1e, 0x6f, 0x66, 0x78, 0x33, 0x93,
+	0x05, 0xb4, 0x2a, 0x54, 0xda, 0x6c, 0x94, 0x56, 0x34, 0x5d, 0xa9, 0x42, 0x09, 0x1f, 0xb3, 0xbb,
+	0xaa, 0xd1, 0x9f, 0x62, 0x89, 0xe9, 0x2a, 0xe7, 0x35, 0x11, 0xa6, 0x6d, 0x5b, 0x16, 0xa1, 0x17,
+	0x7b, 0xc9, 0x3c, 0x33, 0x33, 0x85, 0xf0, 0x2b, 0xc9, 0x9c, 0xbf, 0xca, 0x70, 0xc7, 0xac, 0x87,
+	0x4f, 0x71, 0x89, 0x83, 0x4e, 0x95, 0x49, 0x6e, 0x54, 0xcd, 0x92, 0x62, 0xcc, 0x74, 0xce, 0x6b,
+	0x0e, 0xbd, 0x78, 0x37, 0x09, 0x16, 0x48, 0xbb, 0x23, 0xa9, 0xa1, 0x58, 0x40, 0x9c, 0xe3, 0x28,
+	0x93, 0x95, 0x7a, 0x97, 0x56, 0xf7, 0xd6, 0x4a, 0xd6, 0x63, 0x47, 0xc5, 0x15, 0xfc, 0xa7, 0x8d,
+	0x2a, 0xda, 0x97, 0x51, 0xb8, 0xdb, 0xd5, 0x79, 0x35, 0x18, 0x32, 0xb3, 0x48, 0x40, 0xf7, 0x65,
+	0x5d, 0xf4, 0x32, 0xe7, 0xe7, 0x86, 0xe9, 0x39, 0xcc, 0x1b, 0x1c, 0xff, 0x61, 0xf6, 0xf6, 0x2f,
+	0xb0, 0xdf, 0xd8, 0xd5, 0x90, 0xe0, 0xd0, 0x26, 0x18, 0x88, 0x3f, 0xf0, 0xe2, 0xcb, 0x83, 0x69,
+	0x90, 0x52, 0xcc, 0x1f, 0x4a, 0xd6, 0x5d, 0x1c, 0xa6, 0xc0, 0xd2, 0x4d, 0xa5, 0x11, 0x39, 0xe9,
+	0xfb, 0x0b, 0x62, 0x42, 0x67, 0xf0, 0x1f, 0xe5, 0x87, 0xe9, 0xda, 0xa9, 0x27, 0x72, 0x95, 0x62,
+	0x42, 0x4b, 0xe0, 0xb7, 0x26, 0x3a, 0xb1, 0xe0, 0x56, 0x71, 0xff, 0x55, 0xb7, 0x08, 0x9c, 0x58,
+	0x14, 0x5a, 0x74, 0xbb, 0x93, 0xe8, 0x74, 0x04, 0x19, 0x1c, 0x3e, 0xef, 0x99, 0x07, 0x72, 0xfd,
+	0x1d, 0x00, 0x00, 0xff, 0xff, 0x80, 0x74, 0x6b, 0x26, 0x2e, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -261,6 +352,7 @@ type TodoClient interface {
 	ListTasks(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*TaskResponse, error)
 	NewTask(ctx context.Context, in *Task, opts ...grpc.CallOption) (*Empty, error)
 	RemoveTask(ctx context.Context, in *RemoveTaskRequest, opts ...grpc.CallOption) (*Empty, error)
+	FindProduct(ctx context.Context, in *FindProductRequest, opts ...grpc.CallOption) (*FindProductResponse, error)
 }
 
 type todoClient struct {
@@ -298,11 +390,21 @@ func (c *todoClient) RemoveTask(ctx context.Context, in *RemoveTaskRequest, opts
 	return out, nil
 }
 
+func (c *todoClient) FindProduct(ctx context.Context, in *FindProductRequest, opts ...grpc.CallOption) (*FindProductResponse, error) {
+	out := new(FindProductResponse)
+	err := c.cc.Invoke(ctx, "/Todo.Todo/FindProduct", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TodoServer is the server API for Todo service.
 type TodoServer interface {
 	ListTasks(context.Context, *Empty) (*TaskResponse, error)
 	NewTask(context.Context, *Task) (*Empty, error)
 	RemoveTask(context.Context, *RemoveTaskRequest) (*Empty, error)
+	FindProduct(context.Context, *FindProductRequest) (*FindProductResponse, error)
 }
 
 func RegisterTodoServer(s *grpc.Server, srv TodoServer) {
@@ -363,6 +465,24 @@ func _Todo_RemoveTask_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Todo_FindProduct_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TodoServer).FindProduct(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/Todo.Todo/FindProduct",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TodoServer).FindProduct(ctx, req.(*FindProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Todo_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "Todo.Todo",
 	HandlerType: (*TodoServer)(nil),
@@ -378,6 +498,10 @@ var _Todo_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RemoveTask",
 			Handler:    _Todo_RemoveTask_Handler,
+		},
+		{
+			MethodName: "FindProduct",
+			Handler:    _Todo_FindProduct_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
