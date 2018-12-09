@@ -28,7 +28,12 @@ export const Todo = () => {
             <TodoList key={task.uuid} task={task} removeTask={removeTask} />
           ))}
         </ul>
-        <TodoForm addTask={addTask} taskRef={taskRef} />
+        <TodoForm
+          addTask={addTask}
+          taskRef={taskRef}
+          client={client}
+          setError={setError}
+        />
         {error && (
           <div className="mt-3 px-1">Error: Can't connect to server</div>
         )}
