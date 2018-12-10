@@ -6,8 +6,6 @@
 
 // GENERATED CODE -- DO NOT EDIT!
 
-
-
 const grpc = {};
 grpc.web = require('grpc-web');
 
@@ -22,8 +20,7 @@ proto.Todo = require('./todo_pb.js');
  * @struct
  * @final
  */
-proto.Todo.TodoClient =
-    function(hostname, credentials, options) {
+proto.Todo.TodoClient = function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
 
@@ -49,7 +46,6 @@ proto.Todo.TodoClient =
   this.options_ = options;
 };
 
-
 /**
  * @param {string} hostname
  * @param {?Object} credentials
@@ -58,8 +54,7 @@ proto.Todo.TodoClient =
  * @struct
  * @final
  */
-proto.Todo.TodoPromiseClient =
-    function(hostname, credentials, options) {
+proto.Todo.TodoPromiseClient = function(hostname, credentials, options) {
   if (!options) options = {};
   options['format'] = 'text';
 
@@ -67,10 +62,11 @@ proto.Todo.TodoPromiseClient =
    * @private @const {!proto.Todo.TodoClient} The delegate callback based client
    */
   this.delegateClient_ = new proto.Todo.TodoClient(
-      hostname, credentials, options);
-
+    hostname,
+    credentials,
+    options,
+  );
 };
-
 
 /**
  * @const
@@ -84,9 +80,8 @@ const methodInfo_Todo_ListTasks = new grpc.web.AbstractClientBase.MethodInfo(
   function(request) {
     return request.serializeBinary();
   },
-  proto.Todo.TaskResponse.deserializeBinary
+  proto.Todo.TaskResponse.deserializeBinary,
 );
-
 
 /**
  * @param {!proto.Todo.Empty} request The
@@ -98,16 +93,19 @@ const methodInfo_Todo_ListTasks = new grpc.web.AbstractClientBase.MethodInfo(
  * @return {!grpc.web.ClientReadableStream<!proto.Todo.TaskResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.Todo.TodoClient.prototype.listTasks =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/Todo.Todo/ListTasks',
-      request,
-      metadata,
-      methodInfo_Todo_ListTasks,
-      callback);
+proto.Todo.TodoClient.prototype.listTasks = function(
+  request,
+  metadata,
+  callback,
+) {
+  return this.client_.rpcCall(
+    this.hostname_ + '/Todo.Todo/ListTasks',
+    request,
+    metadata,
+    methodInfo_Todo_ListTasks,
+    callback,
+  );
 };
-
 
 /**
  * @param {!proto.Todo.Empty} request The
@@ -117,16 +115,13 @@ proto.Todo.TodoClient.prototype.listTasks =
  * @return {!Promise<!proto.Todo.TaskResponse>}
  *     The XHR Node Readable Stream
  */
-proto.Todo.TodoPromiseClient.prototype.listTasks =
-    function(request, metadata) {
+proto.Todo.TodoPromiseClient.prototype.listTasks = function(request, metadata) {
   return new Promise((resolve, reject) => {
-    this.delegateClient_.listTasks(
-      request, metadata, (error, response) => {
-        error ? reject(error) : resolve(response);
-      });
+    this.delegateClient_.listTasks(request, metadata, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
   });
 };
-
 
 /**
  * @const
@@ -140,9 +135,8 @@ const methodInfo_Todo_NewTask = new grpc.web.AbstractClientBase.MethodInfo(
   function(request) {
     return request.serializeBinary();
   },
-  proto.Todo.Empty.deserializeBinary
+  proto.Todo.Empty.deserializeBinary,
 );
-
 
 /**
  * @param {!proto.Todo.Task} request The
@@ -154,16 +148,19 @@ const methodInfo_Todo_NewTask = new grpc.web.AbstractClientBase.MethodInfo(
  * @return {!grpc.web.ClientReadableStream<!proto.Todo.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.Todo.TodoClient.prototype.newTask =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/Todo.Todo/NewTask',
-      request,
-      metadata,
-      methodInfo_Todo_NewTask,
-      callback);
+proto.Todo.TodoClient.prototype.newTask = function(
+  request,
+  metadata,
+  callback,
+) {
+  return this.client_.rpcCall(
+    this.hostname_ + '/Todo.Todo/NewTask',
+    request,
+    metadata,
+    methodInfo_Todo_NewTask,
+    callback,
+  );
 };
-
 
 /**
  * @param {!proto.Todo.Task} request The
@@ -173,16 +170,13 @@ proto.Todo.TodoClient.prototype.newTask =
  * @return {!Promise<!proto.Todo.Empty>}
  *     The XHR Node Readable Stream
  */
-proto.Todo.TodoPromiseClient.prototype.newTask =
-    function(request, metadata) {
+proto.Todo.TodoPromiseClient.prototype.newTask = function(request, metadata) {
   return new Promise((resolve, reject) => {
-    this.delegateClient_.newTask(
-      request, metadata, (error, response) => {
-        error ? reject(error) : resolve(response);
-      });
+    this.delegateClient_.newTask(request, metadata, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
   });
 };
-
 
 /**
  * @const
@@ -196,9 +190,8 @@ const methodInfo_Todo_RemoveTask = new grpc.web.AbstractClientBase.MethodInfo(
   function(request) {
     return request.serializeBinary();
   },
-  proto.Todo.Empty.deserializeBinary
+  proto.Todo.Empty.deserializeBinary,
 );
-
 
 /**
  * @param {!proto.Todo.RemoveTaskRequest} request The
@@ -210,16 +203,19 @@ const methodInfo_Todo_RemoveTask = new grpc.web.AbstractClientBase.MethodInfo(
  * @return {!grpc.web.ClientReadableStream<!proto.Todo.Empty>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.Todo.TodoClient.prototype.removeTask =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/Todo.Todo/RemoveTask',
-      request,
-      metadata,
-      methodInfo_Todo_RemoveTask,
-      callback);
+proto.Todo.TodoClient.prototype.removeTask = function(
+  request,
+  metadata,
+  callback,
+) {
+  return this.client_.rpcCall(
+    this.hostname_ + '/Todo.Todo/RemoveTask',
+    request,
+    metadata,
+    methodInfo_Todo_RemoveTask,
+    callback,
+  );
 };
-
 
 /**
  * @param {!proto.Todo.RemoveTaskRequest} request The
@@ -229,16 +225,16 @@ proto.Todo.TodoClient.prototype.removeTask =
  * @return {!Promise<!proto.Todo.Empty>}
  *     The XHR Node Readable Stream
  */
-proto.Todo.TodoPromiseClient.prototype.removeTask =
-    function(request, metadata) {
+proto.Todo.TodoPromiseClient.prototype.removeTask = function(
+  request,
+  metadata,
+) {
   return new Promise((resolve, reject) => {
-    this.delegateClient_.removeTask(
-      request, metadata, (error, response) => {
-        error ? reject(error) : resolve(response);
-      });
+    this.delegateClient_.removeTask(request, metadata, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
   });
 };
-
 
 /**
  * @const
@@ -252,9 +248,8 @@ const methodInfo_Todo_FindProduct = new grpc.web.AbstractClientBase.MethodInfo(
   function(request) {
     return request.serializeBinary();
   },
-  proto.Todo.FindProductResponse.deserializeBinary
+  proto.Todo.FindProductResponse.deserializeBinary,
 );
-
 
 /**
  * @param {!proto.Todo.FindProductRequest} request The
@@ -266,16 +261,19 @@ const methodInfo_Todo_FindProduct = new grpc.web.AbstractClientBase.MethodInfo(
  * @return {!grpc.web.ClientReadableStream<!proto.Todo.FindProductResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.Todo.TodoClient.prototype.findProduct =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/Todo.Todo/FindProduct',
-      request,
-      metadata,
-      methodInfo_Todo_FindProduct,
-      callback);
+proto.Todo.TodoClient.prototype.findProduct = function(
+  request,
+  metadata,
+  callback,
+) {
+  return this.client_.rpcCall(
+    this.hostname_ + '/Todo.Todo/FindProduct',
+    request,
+    metadata,
+    methodInfo_Todo_FindProduct,
+    callback,
+  );
 };
-
 
 /**
  * @param {!proto.Todo.FindProductRequest} request The
@@ -285,16 +283,15 @@ proto.Todo.TodoClient.prototype.findProduct =
  * @return {!Promise<!proto.Todo.FindProductResponse>}
  *     The XHR Node Readable Stream
  */
-proto.Todo.TodoPromiseClient.prototype.findProduct =
-    function(request, metadata) {
+proto.Todo.TodoPromiseClient.prototype.findProduct = function(
+  request,
+  metadata,
+) {
   return new Promise((resolve, reject) => {
-    this.delegateClient_.findProduct(
-      request, metadata, (error, response) => {
-        error ? reject(error) : resolve(response);
-      });
+    this.delegateClient_.findProduct(request, metadata, (error, response) => {
+      error ? reject(error) : resolve(response);
+    });
   });
 };
 
-
 module.exports = proto.Todo;
-

@@ -39,7 +39,7 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
         return {
           value: product.getUuid(),
           label: product.getName(),
-          indexes: product.getIndexsList().map(index => index.getIndex()),
+          indexes: product.getIndexesList().map(index => index.getIndex()),
         };
       });
       return setResults(response);

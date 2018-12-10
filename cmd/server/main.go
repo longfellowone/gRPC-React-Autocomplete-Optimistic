@@ -157,7 +157,7 @@ func (s *server) FindProduct(ctx context.Context, in *pb.FindProductRequest) (*p
 		}
 
 		id := uuid.NewV4().String()
-		s.results = append(s.results, &pb.Product{Name: r.Str, Uuid: id, Indexs: indexes})
+		s.results = append(s.results, &pb.Product{Name: r.Str, Uuid: id, Indexes: indexes})
 
 	}
 

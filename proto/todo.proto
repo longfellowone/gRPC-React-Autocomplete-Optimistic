@@ -27,7 +27,7 @@ message RemoveTaskRequest {
 message Product {
   string uuid = 1;
   string name = 2;
-  repeated Index indexs = 3;
+  repeated Index indexes = 3;
 }
 
 message Index {

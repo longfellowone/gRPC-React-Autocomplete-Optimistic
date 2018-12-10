@@ -649,8 +649,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
       obj = {
         uuid: jspb.Message.getFieldWithDefault(msg, 1, ''),
         name: jspb.Message.getFieldWithDefault(msg, 2, ''),
-        indexsList: jspb.Message.toObjectList(
-          msg.getIndexsList(),
+        indexesList: jspb.Message.toObjectList(
+          msg.getIndexesList(),
           proto.Todo.Index.toObject,
           includeInstance,
         ),
@@ -699,7 +699,7 @@ proto.Todo.Product.deserializeBinaryFromReader = function(msg, reader) {
       case 3:
         var value = new proto.Todo.Index();
         reader.readMessage(value, proto.Todo.Index.deserializeBinaryFromReader);
-        msg.addIndexs(value);
+        msg.addIndexes(value);
         break;
       default:
         reader.skipField();
@@ -736,7 +736,7 @@ proto.Todo.Product.serializeBinaryToWriter = function(message, writer) {
   if (f.length > 0) {
     writer.writeString(2, f);
   }
-  f = message.getIndexsList();
+  f = message.getIndexesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(3, f, proto.Todo.Index.serializeBinaryToWriter);
   }
@@ -769,10 +769,10 @@ proto.Todo.Product.prototype.setName = function(value) {
 };
 
 /**
- * repeated Index indexs = 3;
+ * repeated Index indexes = 3;
  * @return {!Array<!proto.Todo.Index>}
  */
-proto.Todo.Product.prototype.getIndexsList = function() {
+proto.Todo.Product.prototype.getIndexesList = function() {
   return /** @type{!Array<!proto.Todo.Index>} */ (jspb.Message.getRepeatedWrapperField(
     this,
     proto.Todo.Index,
@@ -781,7 +781,7 @@ proto.Todo.Product.prototype.getIndexsList = function() {
 };
 
 /** @param {!Array<!proto.Todo.Index>} value */
-proto.Todo.Product.prototype.setIndexsList = function(value) {
+proto.Todo.Product.prototype.setIndexesList = function(value) {
   jspb.Message.setRepeatedWrapperField(this, 3, value);
 };
 
@@ -790,7 +790,7 @@ proto.Todo.Product.prototype.setIndexsList = function(value) {
  * @param {number=} opt_index
  * @return {!proto.Todo.Index}
  */
-proto.Todo.Product.prototype.addIndexs = function(opt_value, opt_index) {
+proto.Todo.Product.prototype.addIndexes = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(
     this,
     3,
@@ -800,8 +800,8 @@ proto.Todo.Product.prototype.addIndexs = function(opt_value, opt_index) {
   );
 };
 
-proto.Todo.Product.prototype.clearIndexsList = function() {
-  this.setIndexsList([]);
+proto.Todo.Product.prototype.clearIndexesList = function() {
+  this.setIndexesList([]);
 };
 
 /**
