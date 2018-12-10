@@ -36,6 +36,7 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
         return {
           value: product.getUuid(),
           label: product.getName(),
+          indexes: product.getIndexsList().map(index => index.getIndex()),
         };
       });
       return setResults(response);
@@ -44,15 +45,19 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
 
   const onKeyPressed = e => {
     if (results !== undefined && results.length !== 0) {
+      if (e.key === 'Escape') {
+        setResults([]);
+        sethighlightedIndex(0);
+      }
       if (e.key === 'Tab') {
         e.preventDefault();
         handleSumbit();
-        console.log(results[highlightedIndex]);
+        sethighlightedIndex(0);
       }
       if (e.key === 'Enter') {
         e.preventDefault();
         handleSumbit();
-        console.log(results[highlightedIndex]);
+        sethighlightedIndex(0);
       }
       if (e.key === 'ArrowDown') {
         e.preventDefault();
@@ -73,16 +78,16 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
 
   const handleSelect = index => {
     if (highlightedIndex === index) {
-      return 'bg-grey-dark py-2';
+      return 'bg-grey-dark p-2';
     } else {
-      return 'bg-grey-light py-2';
+      return 'bg-grey-light p-2';
     }
   };
 
   return (
     <form onSubmit={handleSumbit}>
       <input
-        className="w-full bg-grey-light rounded p-2"
+        className="w-full bg-grey-light rounded-t p-2"
         placeholder="Add new task..."
         onChange={handleChange}
         value={value}
@@ -98,11 +103,55 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
               key={result.value}
               className={handleSelect(index)}
             >
-              {result.label}
+              {replaceAt(result.label, result.indexes)}
             </li>
           );
         })}
       </ul>
     </form>
   );
+
+  function replaceAt(string, indexes) {
+    let obj;
+    let s = [...string];
+    for (let i = 0; i < indexes.length; i++) {
+      obj = Object.assign(s, {
+        [indexes[i]]: (
+          <span style={{ fontWeight: 'bold' }} key={i}>
+            {string[indexes[i]]}
+          </span>
+        ),
+      });
+    }
+    return obj;
+  }
 };
+
+// let i;
+// let s = [...result.label];
+
+// for (i = 0; i < result.indexes.length; i++) {
+//   Object.assign(s, {
+//     [result.indexes[i]]:
+//       '<b>' + result.label[result.indexes[i]] + '</b>',
+//   });
+// }
+
+// let i;
+// let s = [...result.label];
+
+// for (i = 0; i < result.indexes.length; i++) {
+
+// }
+
+// console.log(s.join(''));
+
+// function replaceAt(string, index) {
+//   return (
+//     string.substring(0, index) +
+//     +'<div style={{fontWeight: "bold"}}>' +
+//     string.substring(index, index + 1).bold() +
+//     '</div>' +
+//     string.substring(index + 1)
+//   );
+//}

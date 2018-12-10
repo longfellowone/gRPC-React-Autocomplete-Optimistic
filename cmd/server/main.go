@@ -8,6 +8,7 @@ import (
 	"github.com/sahilm/fuzzy"
 	"log"
 	"net"
+	"strconv"
 	"time"
 	pb "todo/proto"
 
@@ -152,11 +153,21 @@ func (s *server) FindProduct(ctx context.Context, in *pb.FindProductRequest) (*p
 	}
 	results = results[:r]
 
-	for _, r := range results {
+	for i, r := range results {
+
+		var indexes []*pb.Index
+
+		for _, v := range results[i].MatchedIndexes {
+			indexes = append(indexes, &pb.Index{Index: strconv.Itoa(v)})
+		}
+
+		fmt.Printf("%v - %v\n", r, indexes)
+
 		id := uuid.NewV4().String()
-		s.results = append(s.results, &pb.Product{Name: r.Str, Uuid: id})
-		fmt.Println(r.Str)
+		s.results = append(s.results, &pb.Product{Name: r.Str, Uuid: id, Indexs: indexes})
+
 	}
+
 	fmt.Println("---------------")
 
 	time.Sleep(100 * time.Millisecond)
