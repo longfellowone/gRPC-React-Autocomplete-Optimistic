@@ -10,6 +10,7 @@ export const TodoList = ({ task, removeTask }) => {
         <button
           disabled={task.pending}
           className="bg-red text-white p-2 px-3 rounded-tr rounded-br"
+          tabIndex="-1"
           onClick={() => removeTask(task.uuid)}
         >
           X

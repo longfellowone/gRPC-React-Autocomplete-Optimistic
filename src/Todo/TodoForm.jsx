@@ -7,14 +7,17 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
   const [value, setValue] = useState('');
   const [highlightedIndex, sethighlightedIndex] = useState(0);
 
-  const handleSumbit = () => {
-    if (!value) return;
-    addTask(uuid(), results[highlightedIndex].label);
-    setResults([]);
-    setValue('');
+  const handleSubmit = e => {
+    e.preventDefault();
+    //if (!value) return;
+    if (results !== undefined && results.length !== 0) {
+      addTask(uuid(), results[highlightedIndex].label);
+      setResults([]);
+      setValue('');
+    }
   };
 
-  const handleChange = e => {
+  const handleChange = () => {
     const currentSearch = taskRef.current.value;
     const newSearch = currentSearch.replace(/[\u201C\u201D]/g, '"');
     setValue(currentSearch);
@@ -51,12 +54,12 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
       }
       if (e.key === 'Tab') {
         e.preventDefault();
-        handleSumbit();
+        handleSubmit(e);
         sethighlightedIndex(0);
       }
       if (e.key === 'Enter') {
         e.preventDefault();
-        handleSumbit();
+        handleSubmit(e);
         sethighlightedIndex(0);
       }
       if (e.key === 'ArrowDown') {
@@ -76,16 +79,26 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
     }
   };
 
-  const handleSelect = index => {
+  const handleHighlight = index => {
     if (highlightedIndex === index) {
-      return 'bg-grey-dark p-2';
+      return 'bg-grey-dark p-2 font-bold';
     } else {
-      return 'bg-grey-light p-2';
+      return 'bg-grey-light p-2 font-bold';
     }
   };
 
+  const handleMouseEnter = index => {
+    sethighlightedIndex(index);
+  };
+
+  const handleSelect = e => {
+    e.preventDefault();
+    handleSubmit(e);
+    sethighlightedIndex(0);
+  };
+
   return (
-    <form onSubmit={handleSumbit}>
+    <form onSubmit={handleSubmit}>
       <input
         className="w-full bg-grey-light rounded-t p-2"
         placeholder="Add new task..."
@@ -100,8 +113,11 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
           return (
             <li
               onKeyDown={onKeyPressed}
+              onClick={handleSelect}
+              onSelect={handleSelect}
+              onMouseEnter={() => handleMouseEnter(index)}
               key={result.value}
-              className={handleSelect(index)}
+              className={handleHighlight(index)}
             >
               {replaceAt(result.label, result.indexes)}
             </li>
@@ -112,46 +128,23 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
   );
 
   function replaceAt(string, indexes) {
-    let obj;
-    let s = [...string];
+    const s = [...string];
+    let newString;
+
     for (let i = 0; i < indexes.length; i++) {
-      obj = Object.assign(s, {
+      newString = Object.assign(s, {
         [indexes[i]]: (
-          <span style={{ fontWeight: 'bold' }} key={i}>
+          <span className="font-normal" key={i}>
             {string[indexes[i]]}
           </span>
         ),
       });
     }
-    return obj;
+
+    return newString;
   }
 };
 
-// let i;
-// let s = [...result.label];
-
-// for (i = 0; i < result.indexes.length; i++) {
-//   Object.assign(s, {
-//     [result.indexes[i]]:
-//       '<b>' + result.label[result.indexes[i]] + '</b>',
-//   });
-// }
-
-// let i;
-// let s = [...result.label];
-
-// for (i = 0; i < result.indexes.length; i++) {
-
-// }
-
-// console.log(s.join(''));
-
-// function replaceAt(string, index) {
-//   return (
-//     string.substring(0, index) +
-//     +'<div style={{fontWeight: "bold"}}>' +
-//     string.substring(index, index + 1).bold() +
-//     '</div>' +
-//     string.substring(index + 1)
-//   );
-//}
+// {} for event only
+// {() => (VALUE)} for other only
+// {(e) => (e,VALUE)} for when event+other

@@ -9,7 +9,6 @@ import (
 	"log"
 	"net"
 	"strconv"
-	"time"
 	pb "todo/proto"
 
 	"github.com/satori/go.uuid"
@@ -101,7 +100,7 @@ func (s *server) NewTask(ctx context.Context, in *pb.Task) (*pb.Empty, error) {
 
 	fmt.Println("NewTask Request:", in)
 
-	time.Sleep(1 * time.Second) // To simulate a delayed response
+	//time.Sleep(1 * time.Second) // To simulate a delayed response
 
 	data := []*pb.Task{
 		{Message: in.Message, Uuid: in.Uuid},
@@ -138,8 +137,7 @@ func (s *server) FindProduct(ctx context.Context, in *pb.FindProductRequest) (*p
 		return &pb.FindProductResponse{}, nil
 	}
 
-	fmt.Printf("\nFindProduct Request: %v\n", in.Name)
-	fmt.Println("---------------")
+	fmt.Println("FindProduct Request:", in.Name)
 
 	//for _, v := range in.Name {
 	// fmt.Printf("\t%#U\n", v)
@@ -148,8 +146,8 @@ func (s *server) FindProduct(ctx context.Context, in *pb.FindProductRequest) (*p
 	results := fuzzy.FindFrom(in.Name, s.products)
 
 	r := results.Len()
-	if r > 8 {
-		r = 8
+	if r > 10 {
+		r = 10
 	}
 	results = results[:r]
 
@@ -161,16 +159,10 @@ func (s *server) FindProduct(ctx context.Context, in *pb.FindProductRequest) (*p
 			indexes = append(indexes, &pb.Index{Index: strconv.Itoa(v)})
 		}
 
-		fmt.Printf("%v - %v\n", r, indexes)
-
 		id := uuid.NewV4().String()
 		s.results = append(s.results, &pb.Product{Name: r.Str, Uuid: id, Indexs: indexes})
 
 	}
-
-	fmt.Println("---------------")
-
-	time.Sleep(100 * time.Millisecond)
 
 	return &pb.FindProductResponse{Products: s.results}, nil
 }
