@@ -9,6 +9,7 @@ import (
 	"log"
 	"net"
 	"strconv"
+	"time"
 	pb "todo/proto"
 
 	"github.com/satori/go.uuid"
@@ -100,7 +101,7 @@ func (s *server) NewTask(ctx context.Context, in *pb.Task) (*pb.Empty, error) {
 
 	fmt.Println("NewTask Request:", in)
 
-	//time.Sleep(1 * time.Second) // To simulate a delayed response
+	time.Sleep(500 * time.Millisecond) // To simulate a delayed response
 
 	data := []*pb.Task{
 		{Message: in.Message, Uuid: in.Uuid},
