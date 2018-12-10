@@ -140,10 +140,6 @@ func (s *server) FindProduct(ctx context.Context, in *pb.FindProductRequest) (*p
 
 	fmt.Println("FindProduct Request:", in.Name)
 
-	//for _, v := range in.Name {
-	// fmt.Printf("\t%#U\n", v)
-	//}
-
 	results := fuzzy.FindFrom(in.Name, s.products)
 
 	r := results.Len()

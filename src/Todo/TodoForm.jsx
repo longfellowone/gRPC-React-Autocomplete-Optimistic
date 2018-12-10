@@ -127,15 +127,14 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
     </form>
   );
 
-  function replaceAt(string, indexes) {
-    const s = [...string];
-    let newString;
+  function replaceAt(string, indexArray) {
+    let newString = [...string];
 
-    for (let i = 0; i < indexes.length; i++) {
-      newString = Object.assign(s, {
-        [indexes[i]]: (
+    for (let i = 0; i < indexArray.length; i++) {
+      newString = Object.assign(newString, {
+        [indexArray[i]]: (
           <span className="font-normal" key={i}>
-            {string[indexes[i]]}
+            {newString[indexArray[i]]}
           </span>
         ),
       });
