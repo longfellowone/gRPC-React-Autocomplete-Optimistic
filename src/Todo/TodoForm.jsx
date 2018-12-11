@@ -81,9 +81,9 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
 
   const handleHighlight = index => {
     if (highlightedIndex === index) {
-      return 'bg-grey-dark p-2 font-bold';
+      return 'bg-grey-dark p-2 font-bold cursor-pointer';
     } else {
-      return 'bg-grey-light p-2 font-bold';
+      return 'bg-grey-light p-2 font-bold cursor-pointer';
     }
   };
 
@@ -113,8 +113,7 @@ export const TodoForm = ({ addTask, taskRef, client, setError }) => {
           return (
             <li
               onKeyDown={onKeyPressed}
-              onClick={handleSelect}
-              onSelect={handleSelect}
+              onMouseDown={handleSelect}
               onMouseEnter={() => handleMouseEnter(index)}
               key={result.value}
               className={handleHighlight(index)}
